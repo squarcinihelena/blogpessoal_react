@@ -104,6 +104,8 @@ function Cadastro() {
 								e: ChangeEvent<HTMLInputElement>
 							) => atualizarEstado(e)}
 						/>
+
+						
 					</div>
 					<div className="flex flex-col w-full">
 						<label htmlFor="usuario">
