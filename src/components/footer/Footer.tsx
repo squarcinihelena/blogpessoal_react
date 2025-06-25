@@ -1,5 +1,4 @@
 import {
-	FacebookLogoIcon,
 	InstagramLogoIcon,
 	LinkedinLogoIcon,
 } from '@phosphor-icons/react'
@@ -21,7 +20,7 @@ function Footer() {
 					<div className="flex gap-2">
 						<div className="flex gap-2">
 							<a
-								href="https://www.linkedin.com/in/seu_usuario"
+								href="https://www.linkedin.com/in/squarcinihelena/"
 								target="_blank"
 							>
 								<LinkedinLogoIcon
@@ -30,19 +29,10 @@ function Footer() {
 								/>
 							</a>
 							<a
-								href="https://www.instagram.com/seu_usuario"
+								href="https://www.instagram.com/squarcinihelena/"
 								target="_blank"
 							>
 								<InstagramLogoIcon
-									size={48}
-									weight="bold"
-								/>
-							</a>
-							<a
-								href="https://www.facebook.com/seu_usuario"
-								target="_blank"
-							>
-								<FacebookLogoIcon
 									size={48}
 									weight="bold"
 								/>
