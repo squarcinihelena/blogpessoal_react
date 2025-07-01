@@ -17,6 +17,7 @@
     "react-dom": "^19.1.0",
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^7.6.2",
+    "reactjs-popup": "^2.0.6",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
