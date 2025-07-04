@@ -1,10 +1,11 @@
-import { useState, useContext, useEffect, type ChangeEvent } from "react";
+import { useState, useContext, useEffect, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { buscar, atualizar, cadastrar } from "../../../services/Service";
-import { RotatingLines } from "react-loader-spinner";
 import type Postagem from "../../../models/Postagem";
 import type Tema from "../../../models/Tema";
+import { buscar, atualizar, cadastrar } from "../../../services/Service";
+import { RotatingLines } from "react-loader-spinner";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormPostagem() {
 
@@ -27,7 +28,7 @@ function FormPostagem() {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
-            if (error.toString().includes('403')) {
+            if (error.toString().includes('401')) {
                 handleLogout()
             }
         }
@@ -39,7 +40,7 @@ function FormPostagem() {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
-            if (error.toString().includes('403')) {
+            if (error.toString().includes('401')) {
                 handleLogout()
             }
         }
@@ -51,7 +52,7 @@ function FormPostagem() {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
-            if (error.toString().includes('403')) {
+            if (error.toString().includes('401')) {
                 handleLogout()
             }
         }
@@ -59,7 +60,7 @@ function FormPostagem() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            ToastAlerta('Você precisa estar logado', "info");
             navigate('/');
         }
     }, [token])
@@ -92,7 +93,7 @@ function FormPostagem() {
         navigate('/postagens');
     }
 
-    async function gerarNovaPostagem(e: ChangeEvent<HTMLFormElement>) {
+    async function gerarNovaPostagem(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
 
@@ -104,13 +105,13 @@ function FormPostagem() {
                     },
                 });
 
-                alert('Postagem atualizada com sucesso')
+                ToastAlerta('Postagem atualizada com sucesso', "sucesso")
 
             } catch (error: any) {
-                if (error.toString().includes('403')) {
+                if (error.toString().includes('401')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar a Postagem')
+                    ToastAlerta('Erro ao atualizar a Postagem', "erro")
                 }
             }
 
@@ -122,13 +123,13 @@ function FormPostagem() {
                     },
                 })
 
-                alert('Postagem cadastrada com sucesso');
+                ToastAlerta('Postagem cadastrada com sucesso', "sucesso");
 
             } catch (error: any) {
-                if (error.toString().includes('403')) {
+                if (error.toString().includes('401')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar a Postagem');
+                    ToastAlerta('Erro ao cadastrar a Postagem', "erro");
                 }
             }
         }
